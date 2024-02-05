@@ -21,6 +21,7 @@
     "InstituteStaff":"Personal del instituto",
     "TotalRegistration":"Total usuarios matriculados",
     "UserWithNoRol":"Usuarios sin Rol",
+    "UserWithRol":"Usuarios con Rol",
     "TotalModules":"Total modulos",
     "TotalCycles":"Total ciclos",
     "TotalDepartments":"Total departamentos",
@@ -83,5 +84,18 @@
     "Search":"Buscar",
     "NoResultFound":"No se encontraron resultados",
     "Are you sure you want to delete user?":"Estás seguro de que deseas borrar usuario",
-    "Address":"Dirección"
-}   
+    "Address":"Dirección",
+    "NotMatriculed": "El usuario no esta matriculado en ningun ciclo",
+    "NotUserAsigned": "No hay usuarios asignados a este departamento",
+    "DepartmentUsers":"Usuarios del departamento de ",
+    "Save": "Guardar Cambios",
+    "UserHaveModules":"Usuarios que tienen el módulo :",
+    "AsociatedCycle":"Cyclo asociado",
+    "NAME":"NOMBRE",
+    "SURNAME":"APELLIDO",
+    "BIRTHDATE":"FECHA DE NACIEMIENTO",
+    "UDNI":"DNI",
+    "PHONE":"TELEFONO",
+    "EMAIL":"E-MAIL",
+    "ADDRESS":"DIRECCION"
+}    

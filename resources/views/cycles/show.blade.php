@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="container-fluid">
 
-    <h1 class="moduleTitle">Modulos de : {{$cycle->name}}</h1>
+    <h1 class="moduleTitle">{{__('Modules')}} : {{$cycle->name}}</h1>
 
     <div class="modulos">
         @foreach ($cycle->modules as $modules)
@@ -16,10 +16,10 @@
         <table>
             <thead>
                 <tr>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">E-Mail</th>
-                    <th scope="col">DNI</th>
-                    <th scope="col">Vista</th>
+                    <th scope="col">{{__('Name')}}</th>
+                    <th scope="col">{{__('Email')}}</th>
+                    <th scope="col">{{__('DNI')}}</th>
+                    <th scope="col">{{__('See')}}</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                         <td>
                             <div class="btnce d-inline-flex col-xl-2 col-md-3 col-sm-12">
                                 <a class="btn btn-primary btn-sm float-right" href="{{route('users.show',$user)}}"
-                                    role="button">Ver
+                                    role="button">{{__('See')}}
                                     <i class="bi bi-eye"></i></a>
                             </div>
                         </td>

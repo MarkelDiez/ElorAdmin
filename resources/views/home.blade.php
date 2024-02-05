@@ -52,8 +52,8 @@
                     </h2>
                     <div id="collapse" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <table  class="table table-striped">
-                                <thead >
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
                                         <th scope="col">{{__('Name')}}</th>
                                         <th scope="col">{{__('Surname')}}</th>
@@ -68,16 +68,16 @@
                                         <td>{{$mate->email}}</td>
                                     </tr>
                                     @endforeach
-                        </tbody>
-                    </table>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
             @endif
 
             @if(Auth::user()->hasRole('Profesor'))
-            
+
             <div class="accordion pt-2" id="cycleAccordion">
                 @foreach($cycleName as $cycle)
                 <div class="accordion-item">
@@ -162,12 +162,12 @@
 
             --}}
             @elseif(Auth::user()->hasRole('Estudiante'))
-            <h3>Ciclos Matriculados:</h3>
+            <h3>{{__('Cycle')}}</h3>
             <!--TODO -->
-            
+
             @if(count(Auth::user()->cycles) != 0)
 
-            
+
             <?php $firstCycle = Auth::user()->cycles[0]; ?>
             <div class="accordion">
                 <div class="accordion-item">
@@ -179,8 +179,8 @@
                     </h2>
                     <div id="collapse" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
                         <div class="accordion-body">
-                            <table  class="table table-striped">
-                                <thead >
+                            <table class="table table-striped">
+                                <thead>
                                     <tr>
                                         <th scope="col">{{__('Modules')}}</th>
                                         <th scope="col">{{__('ProfessorName')}}</th>
@@ -189,43 +189,43 @@
                                 </thead>
                                 <tbody>
                                     @foreach($firstCycle->modules as $module)
-                                        @php
-                                        $cycleRegister = DB::table('cycle_register as cr')
-                                            ->join('modules as m', 'cr.module_id', '=', 'm.id')
-                                            ->select('cr.*', 'm.*')
-                                            ->where([
-                                                ['cr.user_id','=', Auth::user()->id],
-                                                ['cr.cycle_id','=',$firstCycle->id],
-                                                ['cr.module_id','=', $module->id],
-                                                ['cr.year','=', now()->year]
-                                            ])
-                                            ->get()
-                                        @endphp
-                                        
-                                        @foreach ($cycleRegister as $p)
+                                    @php
+                                    $cycleRegister = DB::table('cycle_register as cr')
+                                    ->join('modules as m', 'cr.module_id', '=', 'm.id')
+                                    ->select('cr.*', 'm.*')
+                                    ->where([
+                                    ['cr.user_id','=', Auth::user()->id],
+                                    ['cr.cycle_id','=',$firstCycle->id],
+                                    ['cr.module_id','=', $module->id],
+                                    ['cr.year','=', now()->year]
+                                    ])
+                                    ->get()
+                                    @endphp
 
-                                        @php
-                                        $teacher = DB::table('professor_cycle as pc')
-                                        ->join('users as u', 'u.id','=','pc.user_id' )
-                                        ->select('u.*')
-                                        ->where([
-                                            ['pc.module_id' ,'=',$p->module_id],
-                                            ['pc.cycle_id','=',$p->cycle_id]    
-                                        ])
-                                        ->first()
-                                        @endphp
-                                        
-                                            <tr>
-                                                <td>{{ isset($p->name) ? htmlspecialchars($p->name) : 'N/A' }}</td>
-                                                @if($teacher == null)
-                                                <td></td>
-                                                <td></td>
-                                                @else
-                                                <td>{{ $teacher->name }}</td>
-                                                <td>{{ $teacher->email }}</td>
-                                                @endif
-                                            </tr>
-                                        @endforeach
+                                    @foreach ($cycleRegister as $p)
+
+                                    @php
+                                    $teacher = DB::table('professor_cycle as pc')
+                                    ->join('users as u', 'u.id','=','pc.user_id' )
+                                    ->select('u.*')
+                                    ->where([
+                                    ['pc.module_id' ,'=',$p->module_id],
+                                    ['pc.cycle_id','=',$p->cycle_id]
+                                    ])
+                                    ->first()
+                                    @endphp
+
+                                    <tr>
+                                        <td>{{ isset($p->name) ? htmlspecialchars($p->name) : 'N/A' }}</td>
+                                        @if($teacher == null)
+                                        <td></td>
+                                        <td></td>
+                                        @else
+                                        <td>{{ $teacher->name }}</td>
+                                        <td>{{ $teacher->email }}</td>
+                                        @endif
+                                    </tr>
+                                    @endforeach
                                     @endforeach
                                 </tbody>
                             </table>
@@ -236,31 +236,33 @@
             <h3 class="pt-4">{{__('RegistrationHistory')}}</h3>
             @php
             $historico = DB::table('cycle_register as cr')
-                ->distinct()
-                ->join('cycles as c', 'cr.cycle_id', '=', 'c.id')
-                ->select('c.name', 'cr.year')
-                ->where([
-                    ['cr.user_id','=', Auth::user()->id],
-                ])
-                ->orderBy('cr.year', 'desc')
-                ->get()
+            ->distinct()
+            ->join('cycles as c', 'cr.cycle_id', '=', 'c.id')
+            ->select('c.name', 'cr.year')
+            ->where([
+            ['cr.user_id','=', Auth::user()->id],
+            ])
+            ->orderBy('cr.year', 'desc')
+            ->get()
             @endphp
             <table class="table table-bordered table-striped">
-                <tr>    
+                <tr>
                     <th>{{__('Cycle')}}</th>
                     <th>{{__('RegistrationDate')}}</th>
                     <th>{{__('Curso')}}</th>
                 </tr>
-            @foreach ($historico as $h)
+                @foreach ($historico as $h)
                 <tr>
                     <td>{{$h->name}}</td>
                     <td>{{$h->year}}</td>
-                    <td><?php 
+                    <td>
+                        <?php 
                     $fechaCompleta = $h->year; // Suponiendo que $h->year tiene el formato 'Y-m-d'
                     $anyo = substr($fechaCompleta, 0, 4);?>
-                    {{$anyo}}-{{$anyo+1}}</td>
+                        {{$anyo}}-{{$anyo+1}}
+                    </td>
                 </tr>
-            @endforeach
+                @endforeach
             </table>
             @else
             <h3>{{__('NoRegistration')}}</h3>

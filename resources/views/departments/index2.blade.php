@@ -20,9 +20,9 @@
                         <table class="table table-striped">
                             <thead>
                                 <tr>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Telefono</th>
+                                    <th scope="col">{{__('Surname')}}</th>
+                                    <th scope="col">{{__('Name')}}</th>
+                                    <th scope="col">{{__('Phone')}}</th>
                                 </tr>
                             </thead>
                             <tbody>

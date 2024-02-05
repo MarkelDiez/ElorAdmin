@@ -6,10 +6,10 @@
         <table class="table table-bordered table-striped">
             <thead>
                 <tr>
-                    <th scope="col">Apellido</th>
-                    <th scope="col">Nombre</th>
-                    <th scope="col">Telefono</th>
-                    <th scope="col">E-mail</th>
+                    <th scope="col">{{__('Surname')}}</th>
+                    <th scope="col">{{__('Name')}}Nombre</th>
+                    <th scope="col">{{__('Phone')}}</th>
+                    <th scope="col">{{__('Email')}}</th>
                 </tr>
             </thead>
             <tbody>

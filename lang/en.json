@@ -70,6 +70,7 @@
     "ChangePassword": "Change Password",
     "Logout": "Logout",
     "ModuleList": "Module List",
+    "UserWhitRol":"Users with roles",
     "Are you sure you want to delete module?": "Are you sure you want to delete module?",
     "EditModule": "Edit Module",
     "ModuleName": "Module Name",
@@ -83,5 +84,18 @@
     "Search": "Search",
     "NoResultFound": "No results found",
     "Are you sure you want to delete user?": "Are you sure you want to delete user?",
-    "Address": "Address"
+    "Address": "Address",
+    "NotMatriculed":"The user is not enrolled in any cycle",
+    "NotUserAsigned":"There are no users assigned to this department.",
+    "DepartmentUsers": "Department users",
+    "Save":"Save changes",
+    "UserHaveModules":"Users with module :",
+    "AsociatedCycle": "Asociated cycle",
+    "NAME":"NAME",
+    "SURNAME":"SURNAME",
+    "BIRTHDATE":"BIRTHDATE",
+    "UDNI":"DNI",
+    "PHONE":"PHONE",
+    "EMAIL":"EMAIL",
+    "ADDRESS":"ADDRESS"
 }

@@ -4,31 +4,31 @@
     <table class="userTable" style="">
         <tbody>
             <tr>
-                <td style="font-weight: bold;">NOMBRE :</td>
+                <td style="font-weight: bold;">{{__('NAME')}} :</td>
                 <td>{{$user->name}}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">APELLIDO :</td>
+                <td style="font-weight: bold;">{{__('SURNAME')}} :</td>
                 <td>{{$user->surname}}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">FECHA DE NACIMIENTO :</td>
+                <td style="font-weight: bold;">{{__('BIRTHDATE')}} :</td>
                 <td>{{$user->birthDate}}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">DNI :</td>
+                <td style="font-weight: bold;">{{__('UDNI')}} :</td>
                 <td>{{$user->dni}}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">TELEFONO :</td>
+                <td style="font-weight: bold;">{{__('PHONE')}} :</td>
                 <td>{{$user->phone}}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">E-MAIL :</td>
+                <td style="font-weight: bold;">{{__('EMAIL')}} :</td>
                 <td>{{$user->email}}</td>
             </tr>
             <tr>
-                <td style="font-weight: bold;">DIRECCION :</td>
+                <td style="font-weight: bold;">{{__('ADDRESS')}} :</td>
                 <td>{{$user->address}}</td>
             </tr>
         </tbody>

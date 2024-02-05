@@ -83,5 +83,19 @@
     "Search": "Bilatu",
     "NoResultFound": "Emaitzarik Ez Da Aurkitu",
     "Are you sure you want to delete user?": "Erabiltzailea ezabatu nahi duzula ziur zaude?",
-    "Address": "Helbidea"
+    "Address": "Helbidea",
+    "NotMatriculed": "Erabiltzailea ez dago inongo ziklotan matrikulatuta",
+    "NotUserAsigned": "Ez dago sail honi esleitutako erabiltzailerik",
+    "DepartmentUsers": "Saileko erabiltzaileak",
+    "Save": "Gorde aldaketak",
+    "UserHaveModules": "Modulua duten erabiltzaileak : ",
+    "AsociatedCycle": "Cyclo elkartua",
+    "UserWhitRol": "Rola duten erabiltzaileak",
+    "NAME":"IZENA",
+    "SURNAME":"ABIZENA",
+    "BIRTHDATE":"JAITZE DATA",
+    "UDNI":"NAN",
+    "PHONE":"MUGIKOR ZEMBAKIA",
+    "EMAIL":"POSTU ELEKTRONIKOA",
+    "ADDRESS":"HELBIDEA"
 }

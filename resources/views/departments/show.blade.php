@@ -3,17 +3,17 @@
 <div class="container-fluid">
     <div class="form_div">    
         <div class="title_div">
-            <h1 class="title">Usuarios en el departamento {{$department->name}}:</h1>
+            <h1 class="title">{{__('DepartmentUsers')}} {{$department->name}}:</h1>
         </div>
         <div class="list_div">
             <table class="table table-striped ">
                 <thead>
                     <tr>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">E-Mail</th>
-                        <th scope="col">Dirección</th>
-                        <th scope="col">Ciclo</th>
+                        <th scope="col">{{__('Surname')}}</th>
+                        <th scope="col">{{__('Name')}}</th>
+                        <th scope="col">{{__('Email')}}</th>
+                        <th scope="col">{{__('Address')}}</th>
+                        <th scope="col">{{__('Cycle')}}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -28,12 +28,12 @@
                                 <?php $firstCycle = $user->cycles->first(); ?>
                                 {{ $firstCycle->name }}
                             @else
-                                El usuario no esta matriculado en ningun ciclo.
+                                {{__('NotMatriculed')}}
                             @endif
                         </td>
                     </tr>
                 @empty
-                <h2>No hay usuarios asignados a este departamento</h2>
+                <h2>{{__('NotUserAsigned')}}</h2>
                 @endforelse
                 </tbody>
             </table>
