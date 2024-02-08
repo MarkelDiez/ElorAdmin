@@ -11,6 +11,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\RoleUserController;
 use App\Http\Controllers\Auth\RegisterController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Auth\ChangePasswordController;
+use App\Http\Controllers\Auth\RecoverPasswordController;
 
 use App\Models\Role;
 use App\Models\User;
@@ -82,13 +84,19 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/users', [UserController::class, 'index2']);
+
+Route::get('/change-password', [ChangePasswordController::class, 'showChangePasswordForm'])->name('change.password.form');
+Route::post('/change-password', [ChangePasswordController::class, 'changePassword'])->name('change.password');
+
+Route::get('/recover-password', [RecoverPasswordController::class, 'showResetForm'])->name('recover.password.form');
+Route::post('/recover-password', [RecoverPasswordController::class, 'reset'])->name('recover.password');
+
 Route::get('/departments', [DepartmentController::class, 'index2']);
 
 Route::get('/registerUser', [UserController::class, 'showRegistrationForm'])->name('registerUser');
 Route::post('/admin/users/create', [UserController::class, 'create']);
 
 Route::get('/cycles', [CycleController::class, 'index2']);
-
 
 use App\Http\Controllers\LocaleController;
 

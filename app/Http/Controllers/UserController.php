@@ -9,6 +9,7 @@ use App\Models\Cycle;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -193,6 +194,29 @@ class UserController extends Controller
     /**
      * Remove the specified resource from storage.
      */
+
+    public function changePassword(User $user){
+
+        $user = Auth::user();
+        return view('changePassword', ['user' => $user]);
+    }
+
+
+    public function updatePassword(Request $request, User $user)
+    {
+        $request->validate([
+            'password' => 'required|string|min:6',
+        ]);
+    
+        if (!Hash::check($request->old_password, $user->password)) {
+            $user->password = bcrypt($request->new_password);
+            $user->save();
+    
+            return redirect()->back()->with('success', 'Contraseña actualizada con éxito');
+        } else {
+            return redirect()->back()->with('error', 'La nueva contraseña debe ser diferente de la actual.');
+        }
+    }
     public function destroy(User $user)
     {
         //
