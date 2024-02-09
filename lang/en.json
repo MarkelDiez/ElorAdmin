@@ -70,7 +70,7 @@
     "ChangePassword": "Change Password",
     "Logout": "Logout",
     "ModuleList": "Module List",
-    "UserWhitRol":"Users with roles",
+    "UserWithRol":"Users with roles",
     "Are you sure you want to delete module?": "Are you sure you want to delete module?",
     "EditModule": "Edit Module",
     "ModuleName": "Module Name",

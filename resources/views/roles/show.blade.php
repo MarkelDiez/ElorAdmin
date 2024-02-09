@@ -2,7 +2,7 @@
 @section('contenido')
 <div class="container-fluid">
 
-    <h1 class="moduleTitle">{{__('UserWhitRol')}} : {{$role->name}}</h1>
+    <h1 class="moduleTitle">{{__('UserWithRol')}} : {{$role->name}}</h1>
     <ul>
     @foreach ($users as $user)
         <li>

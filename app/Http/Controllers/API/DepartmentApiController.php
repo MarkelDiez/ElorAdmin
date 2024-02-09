@@ -10,8 +10,21 @@ use Illuminate\Http\Response;
 
 class DepartmentApiController extends Controller
 {
+       //...
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     * path="/api/departments",
+     * tags={"Departamento"},
+     * summary="Mostrar departments",
+     * @OA\Response(
+     * response=200,
+     * description="Mostrar todos los departments."
+     * ),
+     * @OA\Response(
+     * response="default",
+     * description="Ha ocurrido un error."
+     * )
+     * )
      */
     public function index()
 {
@@ -29,9 +42,38 @@ class DepartmentApiController extends Controller
 }
 
 
+        //...
     /**
-     * Store a newly created resource in storage.
-     */
+    * @OA\Post(
+    * path="/api/departments",
+    * tags={"Departamento"},
+    * summary="Create a departments",
+    * @OA\Parameter(
+    * name="name",
+    * in="query",
+    * description="The title of the departments",
+    * required=true,
+    * @OA\Schema(
+    * type="string"
+    * )
+    * ),
+    * @OA\Response(
+    * response=202,
+    * description="Acepted",
+    * @OA\JsonContent(
+    * type="string"
+    * ),
+    * ),
+    * @OA\Response(
+    * response=401,
+    * description="Unauthenticated"
+    * ),
+    * security={
+    * {"bearerAuth": {}}
+    * }
+
+    * )
+    */
         public function store(Request $request)
     {
         //
@@ -44,8 +86,31 @@ class DepartmentApiController extends Controller
 
     }
 
+
+    //...
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     * path="/api/departments/{id}",
+     * tags={"Departamento"},
+     * summary="Mostrar un department concreto",
+     * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=200,
+     * description="Mostrar el departments especificado."
+     * ),
+     * @OA\Response(
+     * response="default",
+     * description="Ha ocurrido un error."
+     * )
+     * )
      */
     public function show(Department $department)
     {
@@ -53,9 +118,47 @@ class DepartmentApiController extends Controller
         return response()->json($department);
     }
 
+      //...
     /**
-     * Update the specified resource in storage.
-     */
+    * @OA\Put(
+    *   path="/api/departments/{id}",
+    * tags={"Departamento"},
+    *   summary="Update a departments",
+    * * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+       *@OA\Parameter(
+    * name="name",
+    * in="query",
+    * description="The title of the departments",
+    * required=true,
+    * @OA\Schema(
+    * type="string"
+    * )
+    * ),
+        * @OA\Response(
+        * response=202,
+        * description="Aceptado",
+        * @OA\JsonContent(
+        * type="string"
+        * ),
+        * ),
+        * @OA\Response(
+        * response=401,
+        * description="Unauthenticated"
+        * ),
+        * security={
+        * {"bearerAuth": {}}
+        * }
+
+    * )
+    */
     public function update(Request $request, Department $department)
     {
         //
@@ -68,8 +171,33 @@ class DepartmentApiController extends Controller
 
     }
 
+       //...
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     * path="/api/departments/{id}",
+     * tags={"Departamento"},
+     * summary="Eliminar un department concreto",
+     * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=202,
+     * description="Eliminado."
+     * ),
+     * @OA\Response(
+     * response="204",
+     * description="No content"
+     * ),
+     * security={
+     * {"bearerAuth": {}}
+     * }
+     * )
      */
     public function destroy(Department $department)
     {

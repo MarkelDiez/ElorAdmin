@@ -24,5 +24,3 @@ use App\Models\Role;
             $usuario->roles()->attach(Role::where('name', $rol)->first());
         }
     }
-
-?>

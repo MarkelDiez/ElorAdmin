@@ -9,8 +9,21 @@ use Illuminate\Http\Response;
 
 class RoleController extends Controller
 {
+     //...
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     * path="/api/roles",
+     * tags={"Roles"},
+     * summary="Mostrar Roles",
+     * @OA\Response(
+     * response=200,
+     * description="Mostrar todos los roles."
+     * ),
+     * @OA\Response(
+     * response="default",
+     * description="Ha ocurrido un error."
+     * )
+     * )
      */
     public function index()
 {
@@ -27,10 +40,38 @@ class RoleController extends Controller
     ])->setStatusCode(Response::HTTP_OK);
 }
 
-
+ //...
     /**
-     * Store a newly created resource in storage.
-     */
+    * @OA\Post(
+    * path="/api/roles",
+    * tags={"Roles"},
+    * summary="Create a Rol",
+    * @OA\Parameter(
+    * name="name",
+    * in="query",
+    * description="The title of the departments",
+    * required=true,
+    * @OA\Schema(
+    * type="string"
+    * )
+    * ),
+    * @OA\Response(
+    * response=202,
+    * description="Accepted",
+    * @OA\JsonContent(
+    * type="string"
+    * ),
+    * ),
+    * @OA\Response(
+    * response=500,
+    * description="Los campos no son validos"
+    * ),
+    * security={
+    * {"bearerAuth": {}}
+    * }
+
+    * )
+    */
     public function store(Request $request)
     {
         //
@@ -47,18 +88,77 @@ class RoleController extends Controller
         }
     }
 
+        //...
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     * path="/api/roles/{id}",
+     * tags={"Roles"},
+     * summary="Mostrar un rol concreto",
+     * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=200,
+     * description="Mostrar el rol especificado."
+     * ),
+     * @OA\Response(
+     * response="default",
+     * description="Ha ocurrido un error."
+     * )
+     * )
      */
     public function show(Role $role)
     {
         //
         return response()->json($role);
     }
-
+ //...
     /**
-     * Update the specified resource in storage.
-     */
+    * @OA\Put(
+    *   path="/api/roles/{id}",
+    * tags={"Roles"},
+    *   summary="Update a Roles",
+    * * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+       *@OA\Parameter(
+    * name="name",
+    * in="query",
+    * description="The title of the role",
+    * required=true,
+    * @OA\Schema(
+    * type="string"
+    * )
+    * ),
+        * @OA\Response(
+        * response=202,
+        * description="Accepted",
+        * @OA\JsonContent(
+        * type="string"
+        * ),
+        * ),
+        * @OA\Response(
+        * response=500,
+        * description="Error al procesa la solicitud"
+        * ),
+        * security={
+        * {"bearerAuth": {}}
+        * }
+
+    * )
+    */
     public function update(Request $request, Role $role)
     {
         //
@@ -74,8 +174,33 @@ class RoleController extends Controller
         }
     }
 
+      //...
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     * path="/api/roles/{id}",
+     * tags={"Roles"},
+     * summary="Eliminar un roles concreto",
+     * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=202,
+     * description="Aceppted."
+     * ),
+     * @OA\Response(
+     * response="204",
+     * description="No content"
+     * ),
+     * security={
+     * {"bearerAuth": {}}
+     * }
+     * )
      */
     public function destroy(Role $role)
     {

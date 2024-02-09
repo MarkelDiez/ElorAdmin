@@ -12,25 +12,70 @@ class ModuleController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
-{
-    $paginationCount = 50; // Puedes ajustar este valor según tus necesidades.
-
-    $modules = Module::orderBy('id', 'asc')->paginate($paginationCount);
-
-    return response()->json([
-        'modules' => $modules->items(),
-        'total' => $modules->total(),
-        'per_page' => $paginationCount, // Estableces el número de elementos por página.
-        'current_page' => $modules->currentPage(),
-        'last_page' => $modules->lastPage(),
-    ])->setStatusCode(Response::HTTP_OK);
-}
-
-
+    //...
     /**
-     * Store a newly created resource in storage.
-     */
+     * @OA\Get(
+     * path="/api/modules",
+     * tags={"Modulos"},
+     * summary="Mostrar modulos",
+     * @OA\Response(
+     * response=200,
+     * description="Mostrar todos los modulos."
+     * ),
+     * @OA\Response(
+     * response="default",
+     * description="Ha ocurrido un error."
+     * )
+     * )
+     * */
+    public function index()
+    {
+        $paginationCount = 50; // Puedes ajustar este valor según tus necesidades.
+
+        $modules = Module::orderBy('id', 'asc')->paginate($paginationCount);
+
+        return response()->json([
+            'modules' => $modules->items(),
+            'total' => $modules->total(),
+            'per_page' => $paginationCount, // Estableces el número de elementos por página.
+            'current_page' => $modules->currentPage(),
+            'last_page' => $modules->lastPage(),
+        ])->setStatusCode(Response::HTTP_OK);
+    }
+
+
+    //...
+    /**
+    * @OA\Post(
+    * path="/api/modules",
+    * tags={"Modulos"},
+    * summary="Create a module",
+    * @OA\Parameter(
+    * name="name",
+    * in="query",
+    * description="The title of the module",
+    * required=true,
+    * @OA\Schema(
+    * type="string"
+    * )
+    * ),
+    * @OA\Response(
+    * response=202,
+    * description="Accepted",
+    * @OA\JsonContent(
+    * type="string"
+    * ),
+    * ),
+    * @OA\Response(
+    * response=406,
+    * description="Los campos no son validos"
+    * ),
+    * security={
+    * {"bearerAuth": {}}
+    * }
+
+    * )
+    */
     public function store(Request $request)
     {
         try {
@@ -43,22 +88,83 @@ class ModuleController extends Controller
             return response()->json([
                 'name' => $request->name
             ], Response::HTTP_ACCEPTED);
-        } catch (\Exception  $e) {
-            return response()->json(['error' => 'Los campos no son validos', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Los campos no son validos', 'message' => $e->getMessage()], Response::HTTP_NOT_ACCEPTABLE);
         }
     }
 
+     //...
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     * path="/api/modules/{id}",
+     * tags={"Modulos"},
+     * summary="Mostrar un modulo concreto",
+     * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=200,
+     * description="Mostrar el modulo especificado."
+     * ),
+     * @OA\Response(
+     * response="default",
+     * description="Error al procesar la solicitud"
+     * )
+     * )
      */
     public function show(Module $module)
     {
         return response()->json($module);
     }
 
+  
+    //...
     /**
-     * Update the specified resource in storage.
-     */
+    * @OA\Put(
+    *   path="/api/modules/{id}",
+    * tags={"Modulos"},
+    *   summary="Update a modules",
+    * * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+       *@OA\Parameter(
+    * name="name",
+    * in="query",
+    * description="The title of the modules",
+    * required=true,
+    * @OA\Schema(
+    * type="string"
+    * )
+    * ),
+        * @OA\Response(
+        * response=202,
+        * description="successful operation",
+        * @OA\JsonContent(
+        * type="string"
+        * ),
+        * ),
+        * @OA\Response(
+        * response=500,
+        * description="Error al procesar la solicitud', 'message"
+        * ),
+        * security={
+        * {"bearerAuth": {}}
+        * }
+
+    * )
+    */
     public function update(Request $request, Module $module)
     {
         try {
@@ -70,13 +176,38 @@ class ModuleController extends Controller
             return response()->json([
                 'name' => $request->name
             ], Response::HTTP_ACCEPTED);
-        } catch (\Exception  $e) {
+        } catch (\Exception $e) {
             return response()->json(['error' => 'Error al procesar la solicitud', 'message' => $e->getMessage()], Response::HTTP_INTERNAL_SERVER_ERROR);
         }
     }
 
+   //...
     /**
-     * Remove the specified resource from storage.
+     * @OA\Delete(
+     * path="/api/modules/{id}",
+     * tags={"Modulos"},
+     * summary="Eliminar un modulo concreto",
+     * @OA\Parameter(
+     * name="id",
+     * description="Project id",
+     * required=true,
+     * in="path",
+     * @OA\Schema(
+     * type="integer"
+     * )
+     * ),
+     * @OA\Response(
+     * response=202,
+     * description="Aceptado."
+     * ),
+     * @OA\Response(
+     * response="204",
+     * description="No"
+     * ),
+     * security={
+     * {"bearerAuth": {}}
+     * }
+     * )
      */
     public function destroy(Module $module)
     {
